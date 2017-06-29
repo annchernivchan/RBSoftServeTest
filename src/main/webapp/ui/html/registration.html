@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+
+    <link rel="stylesheet" href="/ui/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <script src="/ui/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/ui/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <br/>
+        <br/>
+        <br/>
+        <div class="col-md-offset-4 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post">
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                        </div>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                        </div>
+                        <div>
+                            <button type="submit" id="submit" class="btn btn-primary form-control">Sign Up</button>
+                        </div>
+                        <div class="pull-right" >
+                            <a href="/login">Sign Ip</a>
+                        </div>
+                        <input id="csrf-field" type="hidden" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/ui/js/csrf/csrf_form_support.js" ></script>
+
+</body>
+</html>

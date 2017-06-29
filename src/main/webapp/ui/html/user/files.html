@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Files</title>
+</head>
+<body>
+<div id="files-app" class="container">
+    <span style="display: block; width: 100%" class="text-center" v-if="files.length == 0">No files</span>
+    <table v-if="files.length > 0" class="table table-bordered text-center mt-5">
+        <tr>
+            <th class="text-center col-md-3">
+                Filename
+            </th>
+            <th class="text-center col-md-3">
+                Actions
+            </th>
+        </tr>
+        <tr v-for="file in files">
+            <td class="added-file">
+                <a v-bind:href="downloadLink(file.id)">{{ applyTextFilter(file.name) }}</a>
+            </td>
+            <td>
+                <img v-on:click="deleteFile(file)" src="/ui/images/delete.png" class="delete-icon" title="Delete">
+            </td>
+        </tr>
+    </table>
+    <div class="container">
+        <div>
+            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#upload-modal">Upload files
+            </button>
+        </div>
+        <div class="modal" id="upload-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="close-modal-btn" type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span style="display: block; width: 100%" class="text-center" v-if="addedFiles.length == 0">No files</span>
+                        <table v-if="addedFiles.length > 0" class="table table-bordered text-center">
+                            <tr>
+                                <th class="text-center col-md-3">
+                                    Filename
+                                </th>
+                                <th class="text-center col-md-3">
+                                    Actions
+                                </th>
+                            </tr>
+                            <tr v-for="file in addedFiles">
+                                <td class="added-file">
+                                    {{ applyTextFilter(file.name) }}
+                                </td>
+                                <td>
+                                    <img v-on:click="deleteAddedFile(file)" src="/ui/images/delete.png"
+                                         class="delete-icon" title="Delete">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input id="files" style="display: none;" type="file" v-on:change="onFileChange" multiple="multiple">
+                        <button class="btn btn-primary" onclick="document.getElementById('files').click();">
+                            Add file
+                        </button>
+                        <button class="btn btn-primary" v-on:click="saveChanges">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/ui/css/style.css" charset="utf-8">
+<link rel="stylesheet" href="/ui/lib/jquery-confirm/css/jquery-confirm.css" charset="utf-8">
+<link href="/ui/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+
+<script src="/ui/lib/jquery/jquery-3.1.1.min.js" charset="utf-8"></script>
+<script src="/ui/lib/jquery-confirm/js/jquery-confirm.js" charset="utf-8"></script>
+<script src="/ui/lib/bootstrap-3.3.7-dist/js/bootstrap.js" charset="utf-8"></script>
+
+<script src="/ui/lib/vue/vue.js" charset="utf-8"></script>
+<script src="/ui/lib/vue/vue-resource.min.js" charset="utf-8"></script>
+
+<script src="/ui/js/csrf/vue-resource-csrf-support.js" charset="utf-8"></script>
+
+<script src="/ui/js/files-vue.js"></script>
+
+</body>
+</html>
